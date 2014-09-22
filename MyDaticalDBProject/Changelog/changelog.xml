@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="ASCII"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:storedlogic="http://www.datical.com/xml/ns/storedlogic" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd http://www.datical.com/xml/ns/storedlogic http://www.datical.com/xml/ns/storedlogic-1.0.xsd" logicalFilePath="Changelog/changelog.xml">
+    <changeSet author="Robert Reeves" id="baseline-1">
+        <createTable tableName="agilefant_revisions">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="timestamp" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="userId" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="userName" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-2">
+        <createTable tableName="assignment">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="availability" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delta_personal_load" type="BIGINT(19)"/>
+            <column name="backlog_id" type="INT(10)"/>
+            <column name="user_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-3">
+        <createTable tableName="assignment_aud">
+            <column name="id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+            <column name="availability" type="INT(10)"/>
+            <column name="delta_personal_load" type="BIGINT(19)"/>
+            <column name="backlog_id" type="INT(10)"/>
+            <column name="user_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-4">
+        <createTable tableName="backlogs">
+            <column name="backlogtype" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="LONGTEXT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="backlogSize" type="BIGINT(19)"/>
+            <column name="baselineLoad" type="BIGINT(19)"/>
+            <column name="endDate" type="datetime"/>
+            <column name="readonlyToken" type="VARCHAR(255)"/>
+            <column name="startDate" type="datetime"/>
+            <column name="rank" type="INT(10)"/>
+            <column name="status" type="INT(10)"/>
+            <column name="parent_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-5">
+        <createTable tableName="backlogs_aud">
+            <column name="backlogtype" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+            <column name="description" type="LONGTEXT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="parent_id" type="INT(10)"/>
+            <column name="backlogSize" type="BIGINT(19)"/>
+            <column name="baselineLoad" type="BIGINT(19)"/>
+            <column name="endDate" type="datetime"/>
+            <column name="rank" type="INT(10)"/>
+            <column name="startDate" type="datetime"/>
+            <column name="status" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-6">
+        <createTable tableName="history_backlogs">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="branchMax" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="doneSum" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estimateSum" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rootSum" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="datetime"/>
+            <column name="backlog_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-7">
+        <createTable tableName="history_iterations">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="deltaOriginalEstimate" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="effortLeftSum" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="originalEstimateSum" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="iteration_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-8">
+        <createTable tableName="holiday">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="endDate" type="datetime"/>
+            <column name="startDate" type="datetime"/>
+            <column name="user_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-9">
+        <createTable tableName="holidayanomaly">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date" type="date"/>
+            <column name="user_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-10">
+        <createTable tableName="hourentries">
+            <column name="DTYPE" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date" type="datetime"/>
+            <column name="description" type="LONGTEXT"/>
+            <column name="minutesSpent" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="backlog_id" type="INT(10)"/>
+            <column name="story_id" type="INT(10)"/>
+            <column name="task_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-11">
+        <createTable tableName="labels">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="displayName" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="datetime"/>
+            <column name="creator_id" type="INT(10)"/>
+            <column name="story_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-12">
+        <createTable tableName="logins">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="INT(10)"/>
+            <column name="time" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-13">
+        <createTable tableName="schema_version">
+            <column name="version_rank" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="installed_rank" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="script" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="checksum" type="INT(10)"/>
+            <column name="installed_by" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="installed_on" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="execution_time" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="success" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-14">
+        <createTable tableName="settings">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-15">
+        <createTable tableName="stories">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="LONGTEXT"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="storyPoints" type="INT(10)"/>
+            <column name="storyValue" type="INT(10)"/>
+            <column defaultValueNumeric="0" name="treeRank" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="backlog_id" type="INT(10)"/>
+            <column name="iteration_id" type="INT(10)"/>
+            <column name="parent_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-16">
+        <createTable tableName="stories_aud">
+            <column name="id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+            <column name="description" type="LONGTEXT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="state" type="INT(10)"/>
+            <column name="storyPoints" type="INT(10)"/>
+            <column name="storyValue" type="INT(10)"/>
+            <column defaultValueNumeric="0" name="treeRank" type="INT(10)"/>
+            <column name="backlog_id" type="INT(10)"/>
+            <column name="iteration_id" type="INT(10)"/>
+            <column name="parent_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-17">
+        <createTable tableName="story_access">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date" type="datetime"/>
+            <column name="story_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-18">
+        <createTable tableName="story_user">
+            <column name="Story_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="User_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-19">
+        <createTable tableName="story_user_aud">
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Story_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="User_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-20">
+        <createTable tableName="storyrank">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="rank" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="backlog_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="story_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-21">
+        <createTable tableName="storyrank_aud">
+            <column name="id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+            <column name="rank" type="INT(10)"/>
+            <column name="backlog_id" type="INT(10)"/>
+            <column name="story_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-22">
+        <createTable tableName="task_user">
+            <column name="tasks_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="responsibles_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-23">
+        <createTable tableName="task_user_aud">
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tasks_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="responsibles_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-24">
+        <createTable tableName="tasks">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="LONGTEXT"/>
+            <column name="effortleft" type="BIGINT(19)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="originalestimate" type="BIGINT(19)"/>
+            <column defaultValueNumeric="0" name="rank" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="iteration_id" type="INT(10)"/>
+            <column name="story_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-25">
+        <createTable tableName="tasks_aud">
+            <column name="id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+            <column name="description" type="LONGTEXT"/>
+            <column name="effortleft" type="BIGINT(19)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="originalestimate" type="BIGINT(19)"/>
+            <column defaultValueNumeric="0" name="rank" type="INT(10)"/>
+            <column name="state" type="INT(10)"/>
+            <column name="iteration_id" type="INT(10)"/>
+            <column name="story_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-26">
+        <createTable tableName="team_iteration">
+            <column name="Team_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Iteration_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-27">
+        <createTable tableName="team_iteration_aud">
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Team_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Iteration_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-28">
+        <createTable tableName="team_product">
+            <column name="Team_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Product_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-29">
+        <createTable tableName="team_product_aud">
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Team_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Product_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-30">
+        <createTable tableName="team_user">
+            <column name="User_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Team_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-31">
+        <createTable tableName="team_user_aud">
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Team_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="User_id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-32">
+        <createTable tableName="teams">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="LONGTEXT"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-33">
+        <createTable tableName="teams_aud">
+            <column name="id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+            <column name="description" type="LONGTEXT"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-34">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="1" name="admin" type="BIT(1)"/>
+            <column defaultValueNumeric="0" name="autoassignToStories" type="BIT(1)"/>
+            <column defaultValueNumeric="1" name="autoassignToTasks" type="BIT(1)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="enabled" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fullName" type="VARCHAR(255)"/>
+            <column name="initials" type="VARCHAR(255)"/>
+            <column name="loginName" type="VARCHAR(255)"/>
+            <column defaultValueNumeric="1" name="markStoryStarted" type="INT(10)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="recentItemsNumberOfWeeks" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weekEffort" type="BIGINT(19)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-35">
+        <createTable tableName="users_aud">
+            <column name="id" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REV" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REVTYPE" type="TINYINT(3)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="enabled" type="BIT(1)"/>
+            <column name="fullName" type="VARCHAR(255)"/>
+            <column name="initials" type="VARCHAR(255)"/>
+            <column name="loginName" type="VARCHAR(255)"/>
+            <column name="weekEffort" type="BIGINT(19)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-36">
+        <createTable tableName="whatsnextentry">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="0" name="rank" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_id" type="INT(10)"/>
+            <column name="user_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-37">
+        <createTable tableName="whatsnextstoryentry">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="0" name="rank" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="story_id" type="INT(10)"/>
+            <column name="user_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-38">
+        <createTable tableName="widgetcollections">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-39">
+        <createTable tableName="widgets">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="listNumber" type="INT(10)"/>
+            <column name="objectId" type="INT(10)"/>
+            <column name="position" type="INT(10)"/>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="widgetCollection_id" type="INT(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-40">
+        <addPrimaryKey columnNames="id, REV" constraintName="PRIMARY" tableName="assignment_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-41">
+        <addPrimaryKey columnNames="id, REV" constraintName="PRIMARY" tableName="backlogs_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-42">
+        <addPrimaryKey columnNames="id, REV" constraintName="PRIMARY" tableName="stories_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-43">
+        <addPrimaryKey columnNames="Story_id, User_id" constraintName="PRIMARY" tableName="story_user"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-44">
+        <addPrimaryKey columnNames="REV, Story_id, User_id" constraintName="PRIMARY" tableName="story_user_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-45">
+        <addPrimaryKey columnNames="id, REV" constraintName="PRIMARY" tableName="storyrank_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-46">
+        <addPrimaryKey columnNames="tasks_id, responsibles_id" constraintName="PRIMARY" tableName="task_user"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-47">
+        <addPrimaryKey columnNames="REV, tasks_id, responsibles_id" constraintName="PRIMARY" tableName="task_user_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-48">
+        <addPrimaryKey columnNames="id, REV" constraintName="PRIMARY" tableName="tasks_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-49">
+        <addPrimaryKey columnNames="Team_id, Iteration_id" constraintName="PRIMARY" tableName="team_iteration"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-50">
+        <addPrimaryKey columnNames="REV, Team_id, Iteration_id" constraintName="PRIMARY" tableName="team_iteration_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-51">
+        <addPrimaryKey columnNames="Team_id, Product_id" constraintName="PRIMARY" tableName="team_product"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-52">
+        <addPrimaryKey columnNames="REV, Team_id, Product_id" constraintName="PRIMARY" tableName="team_product_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-53">
+        <addPrimaryKey columnNames="REV, Team_id, User_id" constraintName="PRIMARY" tableName="team_user_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-54">
+        <addPrimaryKey columnNames="id, REV" constraintName="PRIMARY" tableName="teams_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-55">
+        <addPrimaryKey columnNames="id, REV" constraintName="PRIMARY" tableName="users_aud"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-56">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="users_aud" constraintName="FK154C77D920258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-57">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="assignment_aud" constraintName="FK1B6D861E20258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-58">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="storyrank_aud" constraintName="FK1CD8B7F220258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-59">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="holidayanomaly" constraintName="FK267567ABC1610AD2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-60">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="widgetcollections" constraintName="FK26C78D1C1610AD2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-61">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="assignment" constraintName="FK3D2B86CDC1610AD2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-62">
+        <addForeignKeyConstraint baseColumnNames="backlog_id" baseTableName="assignment" constraintName="FK3D2B86CDE537EC82" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-63">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="story_access" constraintName="FK44C5ABEEC1610AD2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-64">
+        <addForeignKeyConstraint baseColumnNames="story_id" baseTableName="story_access" constraintName="FK44C5ABEEE0E4BFA2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="stories"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-65">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="backlogs_aud" constraintName="FK46C0B1E720258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-66">
+        <addForeignKeyConstraint baseColumnNames="task_id" baseTableName="whatsnextentry" constraintName="FK4B2134106E84F892" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="tasks"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-67">
+        <addForeignKeyConstraint baseColumnNames="story_id" baseTableName="whatsnextstoryentry" constraintName="FK4B2134106E84F893" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="stories"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-68">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="whatsnextentry" constraintName="FK4B213410C1610AD2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-69">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="whatsnextstoryentry" constraintName="FK4B213410C1610AD3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-70">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="logins" constraintName="FK4B213410C1610AD4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-71">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="team_product_aud" constraintName="FK4E84E85E20258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-72">
+        <addForeignKeyConstraint baseColumnNames="widgetCollection_id" baseTableName="widgets" constraintName="FK4FE3EEAF8BACA792" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="widgetcollections"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-73">
+        <addForeignKeyConstraint baseColumnNames="User_id" baseTableName="story_user" constraintName="FK5914FCD5C1610AD2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-74">
+        <addForeignKeyConstraint baseColumnNames="Story_id" baseTableName="story_user" constraintName="FK5914FCD5E0E4BFA2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="stories"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-75">
+        <addForeignKeyConstraint baseColumnNames="Team_id" baseTableName="team_product" constraintName="FK65CE090D745BA992" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="teams"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-76">
+        <addForeignKeyConstraint baseColumnNames="Product_id" baseTableName="team_product" constraintName="FK65CE090DA7FE2362" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-77">
+        <addForeignKeyConstraint baseColumnNames="story_id" baseTableName="storyrank" constraintName="FK6600C2A1E0E4BFA2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="stories"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-78">
+        <addForeignKeyConstraint baseColumnNames="backlog_id" baseTableName="storyrank" constraintName="FK6600C2A1F63400A2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-79">
+        <addForeignKeyConstraint baseColumnNames="iteration_id" baseTableName="tasks" constraintName="FK6907B8E4157D2A2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-80">
+        <addForeignKeyConstraint baseColumnNames="story_id" baseTableName="tasks" constraintName="FK6907B8EE0E4BFA2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="stories"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-81">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="backlogs" constraintName="FK7E75FF16B8A85DD5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-82">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="team_user_aud" constraintName="FK7FE983BE20258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-83">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="stories_aud" constraintName="FK853E2CA420258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-84">
+        <addForeignKeyConstraint baseColumnNames="iteration_id" baseTableName="stories" constraintName="FK8FB060534157D2A2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-85">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="stories" constraintName="FK8FB06053F5E897CD" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="stories"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-86">
+        <addForeignKeyConstraint baseColumnNames="backlog_id" baseTableName="stories" constraintName="FK8FB06053F63400A2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-87">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="story_user_aud" constraintName="FK9A1CB82620258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-88">
+        <addForeignKeyConstraint baseColumnNames="iteration_id" baseTableName="history_iterations" constraintName="FK9DD479C14157D2A2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-89">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="holiday" constraintName="FKA44DC038C1610AD2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-90">
+        <addForeignKeyConstraint baseColumnNames="backlog_id" baseTableName="history_backlogs" constraintName="FKA6B13261F8762ABE" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-91">
+        <addForeignKeyConstraint baseColumnNames="responsibles_id" baseTableName="task_user" constraintName="FKAC91A4527F4B120" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-92">
+        <addForeignKeyConstraint baseColumnNames="tasks_id" baseTableName="task_user" constraintName="FKAC91A45B1C109E9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="tasks"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-93">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="tasks_aud" constraintName="FKBD8325F20258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-94">
+        <addForeignKeyConstraint baseColumnNames="creator_id" baseTableName="labels" constraintName="FKBDD05FFF1C5D0ED1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-95">
+        <addForeignKeyConstraint baseColumnNames="story_id" baseTableName="labels" constraintName="FKBDD05FFFE0E4BFA2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="stories"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-96">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="task_user_aud" constraintName="FKF0A49D9620258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-97">
+        <addForeignKeyConstraint baseColumnNames="Iteration_id" baseTableName="team_iteration" constraintName="FKF2269B7B4157D2A2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-98">
+        <addForeignKeyConstraint baseColumnNames="Team_id" baseTableName="team_iteration" constraintName="FKF2269B7B745BA992" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="teams"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-99">
+        <addForeignKeyConstraint baseColumnNames="Team_id" baseTableName="team_user" constraintName="FKF587546D745BA992" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="teams"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-100">
+        <addForeignKeyConstraint baseColumnNames="User_id" baseTableName="team_user" constraintName="FKF587546DC1610AD2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-101">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="teams_aud" constraintName="FKF6966C8720258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-102">
+        <addForeignKeyConstraint baseColumnNames="task_id" baseTableName="hourentries" constraintName="FKF6FE62C6E84F892" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="tasks"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-103">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="hourentries" constraintName="FKF6FE62CC1610AD2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-104">
+        <addForeignKeyConstraint baseColumnNames="story_id" baseTableName="hourentries" constraintName="FKF6FE62CE0E4BFA2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="stories"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-105">
+        <addForeignKeyConstraint baseColumnNames="backlog_id" baseTableName="hourentries" constraintName="FKF6FE62CF63400A2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-106">
+        <addForeignKeyConstraint baseColumnNames="REV" baseTableName="team_iteration_aud" constraintName="FKFE5293CC20258526" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="agilefant_revisions"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-107">
+        <addUniqueConstraint columnNames="backlog_id, story_id" constraintName="backlog_id" deferrable="false" disabled="false" initiallyDeferred="false" tableName="storyrank"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-108">
+        <addUniqueConstraint columnNames="iteration_id, timestamp" constraintName="iteration_id" deferrable="false" disabled="false" initiallyDeferred="false" tableName="history_iterations"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-109">
+        <addUniqueConstraint columnNames="loginName" constraintName="loginName" deferrable="false" disabled="false" initiallyDeferred="false" tableName="users"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-110">
+        <addUniqueConstraint columnNames="name" constraintName="name" deferrable="false" disabled="false" initiallyDeferred="false" tableName="settings"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-111">
+        <addUniqueConstraint columnNames="readonlyToken" constraintName="readonlyToken" deferrable="false" disabled="false" initiallyDeferred="false" tableName="backlogs"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-112">
+        <addUniqueConstraint columnNames="story_id, user_id" constraintName="story_id" deferrable="false" disabled="false" initiallyDeferred="false" tableName="whatsnextstoryentry"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-113">
+        <addUniqueConstraint columnNames="task_id, user_id" constraintName="task_id" deferrable="false" disabled="false" initiallyDeferred="false" tableName="whatsnextentry"/>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-114">
+        <createIndex indexName="label_name" tableName="labels" unique="false">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-115">
+        <createIndex indexName="name" tableName="teams" unique="true">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-116">
+        <createIndex indexName="schema_version_ir_idx" tableName="schema_version" unique="false">
+            <column name="installed_rank"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-117">
+        <createIndex indexName="schema_version_s_idx" tableName="schema_version" unique="false">
+            <column name="success"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Robert Reeves" id="baseline-118">
+        <createIndex indexName="schema_version_vr_idx" tableName="schema_version" unique="false">
+            <column name="version_rank"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
+
+
+
+
+
