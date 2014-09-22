@@ -1,0 +1,16 @@
+
+<processing>
+ <logfiledir>$INSTALL_PATH</logfiledir>
+  <job name="Execute Datical DB">
+    <os family="windows" />
+    <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/DaticalDBProject">
+	  <arg>-drivers</arg><arg>C:\dev\MySQL</arg><arg>deploy</arg><arg>Target</arg>
+    </executefile>
+  </job>
+  <job name="Execute Datical DB">
+    <os family="unix" />
+    <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH">
+	  <arg>-drivers</arg><arg>C:\dev\MySQL</arg><arg>deploy</arg><arg>Target</arg>
+    </executefile>
+  </job>
+</processing>

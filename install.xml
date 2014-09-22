@@ -1,0 +1,61 @@
+<izpack:installation version="5.0"
+	xmlns:izpack="http://izpack.org/schema/installation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://izpack.org/schema/installation http://izpack.org/schema/5.0/izpack-installation-5.0.xsd">
+
+	<info>
+		<appname>Test</appname>
+		<appversion>0.0</appversion>
+		<appsubpath>myapp</appsubpath>
+		<javaversion>1.6</javaversion>
+	</info>
+
+	<locale>
+		<langpack iso3="eng" />
+	</locale>
+
+	<guiprefs width="800" height="600" resizable="yes">
+		
+		<laf name="substance">
+			<os family="windows" />
+			<os family="unix" />
+			<param name="variant" value="mist-silver" />
+		</laf>
+		<laf name="substance">
+			<os family="mac" />
+			<param name="variant" value="mist-aqua" />
+		</laf>
+		<modifier key="useHeadingPanel" value="yes" />
+	</guiprefs>
+
+
+	<resources>
+		
+		<res id="userInputSpec.xml" src="userInputSpec.xml" parse="yes"
+			type="xml" />
+		<res id="ProcessPanel.Spec.xml" src="ProcessPanel.spec.xml" />
+	</resources>
+
+	<panels>
+		<panel classname="UserInputPanel" id="UserInputPanel.0" />
+		<panel classname="TargetPanel" id="TargetPanel.0" />
+		<panel classname="PacksPanel" id="PacksPanel.0" />
+		<panel classname="InstallPanel" id="InstallPanel.0" />
+		<panel classname="ProcessPanel" id="ProcessPanel.Spec.xml" />
+		<panel classname="FinishPanel" id="FinishPanel.0" />
+	</panels>
+
+	<packs>
+		<pack name="Datical DB Project for Agilefant" required="yes">
+			<description>This is the complete Datical DB Project required to deploy or update the Agilefant database. </description>
+			<fileset dir="../DaticalDB" targetdir="$INSTALL_PATH/DaticalDBProject"
+				override="true" />
+			<parsable targetfile="$INSTALL_PATH/DaticalDBProject/datical.project"
+				type="xml" />
+		</pack>
+		<pack name="Datical DB REPL" required="yes">
+			<description>This is the Datical DB REPL install.</description>
+			<fileset dir="C:\Program Files (x86)\DaticalDB\repl" targetdir="$INSTALL_PATH/repl"
+				override="true" />
+		</pack>
+	</packs>
+</izpack:installation>

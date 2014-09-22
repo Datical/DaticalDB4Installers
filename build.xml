@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<project default="install">
+	<path id="build.classpath">
+		<fileset dir="IzPack">
+			<include name="lib/*.jar" />
+		</fileset>
+	</path>
+	<taskdef name="izpack" classpathref="build.classpath" classname="com.izforge.izpack.ant.IzPackTask" />
+
+	<target name="install">
+		<property name="installer" value="Agilefant_with_Datical_DB.jar"/>
+		<delete file="${installer}"></delete>
+		<izpack input="install.xml" output="${installer}" installerType="standard" inheritAll="true" basedir="${basedir}" izPackDir="${user.home}/IzPack/" />
+	</target>
+</project>

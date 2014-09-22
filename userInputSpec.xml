@@ -1,0 +1,24 @@
+<userInput>
+	<!-- Install -->
+	<panel id="UserInputPanel.0">
+		<createForPack name="Datical DB Project for Agilefant" />
+		<field type="title" txt="MySQL Database Information" bold="true" size="1" />
+		<field type="divider" align="top" />
+		<!-- Used to update datical.project -->
+		<field type="text" align="left" variable="HOSTNAME">
+			<spec txt="Database Hostname:" size="25" set="localhost" />
+		</field>
+		<field type="text" align="left" variable="PORT">
+			<spec txt="Database Port:" size="25" set="3306" />
+		</field>
+		<field type="text" align="left" variable="USERNAME">
+			<spec txt="Database Username:" size="25" set="root" />
+		</field>
+		<field type="text" align="left" variable="PASSWORD">
+			<spec txt="Database Password:" size="25" set="password" />
+		</field>
+		<field type="text" align="left" variable="SCHEMA">
+			<spec txt="Database Schema:" size="25" set="agilefant_datical" />
+		</field>
+	</panel>
+</userInput>
