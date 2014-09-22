@@ -18,7 +18,7 @@
 			<spec txt="Database Password:" size="25" set="password" />
 		</field>
 		<field type="text" align="left" variable="SCHEMA">
-			<spec txt="Database Schema:" size="25" set="agilefant_datical" />
+			<spec txt="Database Schema:" size="25" set="agilefant" />
 		</field>
 	</panel>
 </userInput>

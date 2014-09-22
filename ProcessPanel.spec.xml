@@ -2,19 +2,19 @@
  <logfiledir>$INSTALL_PATH</logfiledir>
   <job name="Execute Datical DB">
     <os family="windows" />
-    <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/DaticalDBProject">
+    <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
 	  <arg>newProject</arg>
     </executefile>
-    <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/DaticalDBProject">
+    <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
-	  <arg>newDBDef</arg>
+	  <arg>newDbDef</arg>
 	  <arg>DbDefClass</arg>
 	  <arg>MysqlDbDef</arg>
 	  <arg>name</arg>
-	  <arg>MyNewDBDef</arg>
+	  <arg>Agilefant</arg>
 	  <arg>username</arg>
 	  <arg>$USERNAME</arg>
 	  <arg>password</arg>
@@ -26,28 +26,28 @@
 	  <arg>database</arg>
 	  <arg>$SCHEMA</arg>
     </executefile>
-    <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/DaticalDBProject">
+    <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
 	  <arg>deploy</arg>
-	  <arg>MyNewDBDef</arg>
+	  <arg>Agilefant</arg>
     </executefile>
   </job>
   <job name="Execute Datical DB">
     <os family="unix" />
-    <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH/DaticalDBProject">
+    <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
 	  <arg>newProject</arg>
     </executefile>
-    <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH/DaticalDBProject">
+    <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
-	  <arg>newDBDef</arg>
+	  <arg>newDbDef</arg>
 	  <arg>DbDefClass</arg>
 	  <arg>MysqlDbDef</arg>
 	  <arg>name</arg>
-	  <arg>MyNewDBDef</arg>
+	  <arg>Agilefant</arg>
 	  <arg>username</arg>
 	  <arg>$USERNAME</arg>
 	  <arg>password</arg>
@@ -59,11 +59,11 @@
 	  <arg>database</arg>
 	  <arg>$SCHEMA</arg>
     </executefile>
-    <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH/DaticalDBProject">
+    <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
 	  <arg>deploy</arg>
-	  <arg>MyNewDBDef</arg>
+	  <arg>Agilefant</arg>
     </executefile>
   </job>
 </processing>

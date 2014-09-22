@@ -47,10 +47,8 @@
 	<packs>
 		<pack name="Datical DB Project for Agilefant" required="yes">
 			<description>This is the complete Datical DB Project required to deploy or update the Agilefant database. </description>
-			<fileset dir="../DaticalDB" targetdir="$INSTALL_PATH/DaticalDBProject"
+			<fileset dir="MyDaticalDBProject" targetdir="$INSTALL_PATH/MyDaticalDBProject"
 				override="true" />
-			<parsable targetfile="$INSTALL_PATH/DaticalDBProject/datical.project"
-				type="xml" />
 		</pack>
 		<pack name="Datical DB REPL" required="yes">
 			<description>This is the Datical DB REPL install.</description>
