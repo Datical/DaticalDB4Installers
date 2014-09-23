@@ -23,8 +23,6 @@ set DEFAULT_IZPACK_HOME=%~dp0..
 if "%IZPACK_HOME%"=="" set IZPACK_HOME=%DEFAULT_IZPACK_HOME%
 set DEFAULT_IZPACK_HOME=
 
-echo IZPACK_HOME is "%IZPACK_HOME%"
-
 rem Slurp the command line arguments. This loop allows for an unlimited number
 rem of arguments (up to the command line limit, anyway).
 set IZPACK_CMD_LINE_ARGS=%1
@@ -42,7 +40,7 @@ rem and for NT handling to skip to.
 rem find IZPACK_HOME if it does not exist due to either
 rem an invalid value passed by the user or the %0 problem 
 rem on Windows 9x
-set IZPACK_JAR=lib\izpack-compiler-*.jar
+set IZPACK_JAR=lib\standalone-compiler.jar
 if exist "%IZPACK_HOME%\%IZPACK_JAR%" goto checkJava
 
 rem check for Izpack in Program Files
@@ -82,7 +80,7 @@ set LOCALCLASSPATH=%IZPACK_HOME%\Izpack.jar;%CLASSPATH%
 for %%i in ("%IZPACK_HOME%\lib\*.jar") do call "%IZPACK_HOME%\bin\lcp.bat" %%i
 
 :runIzpack
-set MAIN_CLASS=com.izforge.izpack.compiler.bootstrap.CompilerLauncher
+set MAIN_CLASS=com.izforge.izpack.compiler.Compiler
 
 "%_JAVACMD%" -Xmx512m %IZPACK_OPTS% -classpath "%LOCALCLASSPATH%" %MAIN_CLASS% %IZPACK_CMD_LINE_ARGS%
 goto end
@@ -98,3 +96,4 @@ if "%OS%"=="WINNT" @endlocal
 
 :mainEnd
 
+

@@ -36,13 +36,6 @@
 # $Id$
 #
 
-function usage() {
-  echo "Launch an url with the browser."
-  echo ""
-  echo "Usage : "
-  echo "  ./start.sh http://izpack.org/"
-}
-
 function detectDesktop() {
   if [[ "$DISPLAY" = "" ]]; then
     return 1
@@ -92,12 +85,6 @@ function lookForRunningGecko(){
   
   return 1
 }
-
-if [[ $# = 0 ]]
-then
-  usage
-  exit 1
-fi
 
 desktop=`detectDesktop` 
 gecko=`lookForRunningGecko`
