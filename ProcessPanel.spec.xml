@@ -1,15 +1,12 @@
 <processing>
  <logfiledir>$INSTALL_PATH</logfiledir>
-  <job name="Execute Datical DB - New Project">
+  <job name="Execute Datical DB">
     <os family="windows" />
     <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
 	  <arg>newProject</arg>
     </executefile>
-  </job>
-  <job name="Execute Datical DB - New Database Definition">
-    <os family="windows" />
     <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
@@ -29,18 +26,6 @@
 	  <arg>database</arg>
 	  <arg>$SCHEMA</arg>
     </executefile>
-  </job>
-  <job name="Execute Datical DB - Forecast Agilefant">
-    <os family="windows" />  
-    <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/MyDaticalDBProject">
-	  <arg>-drivers</arg>
-	  <arg>C:\dev\MySQL</arg>
-	  <arg>forecast</arg>
-	  <arg>Agilefant</arg>
-    </executefile>
-  </job>
-  <job name="Execute Datical DB - Deploy Agilefant">
-    <os family="windows" />  
     <executefile name="$INSTALL_PATH/repl/hammer.bat" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
@@ -48,16 +33,13 @@
 	  <arg>Agilefant</arg>
     </executefile>
   </job>
-  <job name="Execute Datical DB - New Project">
+  <job name="Execute Datical DB">
     <os family="unix" />
     <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
 	  <arg>newProject</arg>
     </executefile>
-  </job>
-  <job name="Execute Datical DB - New Database Definition">
-    <os family="unix" />
     <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
@@ -77,18 +59,6 @@
 	  <arg>database</arg>
 	  <arg>$SCHEMA</arg>
     </executefile>
-  </job>
-  <job name="Execute Datical DB - Forecast Agilefant">
-    <os family="unix" />  
-    <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH/MyDaticalDBProject">
-	  <arg>-drivers</arg>
-	  <arg>C:\dev\MySQL</arg>
-	  <arg>forecast</arg>
-	  <arg>Agilefant</arg>
-    </executefile>
-  </job>
-  <job name="Execute Datical DB - Deploy Agilefant">
-    <os family="unix" />  
     <executefile name="$INSTALL_PATH/repl/hammer" workingDir="$INSTALL_PATH/MyDaticalDBProject">
 	  <arg>-drivers</arg>
 	  <arg>C:\dev\MySQL</arg>
